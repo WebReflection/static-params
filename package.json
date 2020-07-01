@@ -1,7 +1,7 @@
 {
   "name": "static-params",
   "version": "0.0.0",
-  "description": "",
+  "description": "A general purpose utility to allow interpolation values as static parts of a template literal tag",
   "main": "./cjs/index.js",
   "scripts": {
     "build": "npm run cjs && npm run rollup:es && npm run rollup:babel && npm run min && npm run test",
@@ -12,7 +12,11 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test": "nyc node test/index.js"
   },
-  "keywords": ["template", "tag", "dynamic"],
+  "keywords": [
+    "template",
+    "tag",
+    "dynamic"
+  ],
   "author": "Andrea Giammarchi",
   "license": "ISC",
   "devDependencies": {
@@ -33,5 +37,13 @@
     "import": "./esm/index.js",
     "default": "./cjs/index.js"
   },
-  "unpkg": "min.js"
+  "unpkg": "min.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebReflection/static-params.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WebReflection/static-params/issues"
+  },
+  "homepage": "https://github.com/WebReflection/static-params#readme"
 }
