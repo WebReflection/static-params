@@ -3,12 +3,12 @@ const cache = new WeakMap;
 const parse = (template, values) => {
   const t = [template[0]];
   const v = [];
-  for (let c = 0, i = 1, {length} = template; i < length; i++) {
-    if (values[i - 1] instanceof Static)
-      t[c] += values[i - 1].v + template[i];
+  for (let c = 0, i = 0, j = 0, {length} = values; i < length; i++) {
+    if (values[i] instanceof Static)
+      t[c] += values[i].v + template[i + 1];
     else {
-      v.push(i - 1);
-      t[++c] = template[i];
+      v[j++] = i;
+      t[++c] = template[i + 1];
     }
   }
   return {t, v};

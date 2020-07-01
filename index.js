@@ -7,10 +7,10 @@ self.staticParams = (function (exports) {
     var t = [template[0]];
     var v = [];
 
-    for (var c = 0, i = 1, length = template.length; i < length; i++) {
-      if (values[i - 1] instanceof Static) t[c] += values[i - 1].v + template[i];else {
-        v.push(i - 1);
-        t[++c] = template[i];
+    for (var c = 0, i = 0, j = 0, length = values.length; i < length; i++) {
+      if (values[i] instanceof Static) t[c] += values[i].v + template[i + 1];else {
+        v[j++] = i;
+        t[++c] = template[i + 1];
       }
     }
 
