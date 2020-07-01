@@ -58,3 +58,24 @@ test(asStatic('p'))[0] === test(asStatic('p'))[0];
 // but this is always false (one uses 'b', the other 'i')
 test(asStatic('b'))[0] === test(asStatic('i'))[0];
 ```
+
+Accordingly, it is a *very bad idea* to wrap `uhtml`, `lighterhtml`, or any similar library once, as the use case for dynamic tags, re-mapped as static content, is not so common, and every other common use case would be penalized.
+
+It is then suggested to confine this utility as opposite of wrapping template literal tags everywhere.
+
+```js
+import {render, html} from 'uhtml';
+import {asStatic, asTag} from 'static-params';
+
+
+// use the specialized shtml only when needed
+const shtml = asTag(html);
+const el = asStatic('ul');
+
+render(document.body, shtml`
+  <${el}>${
+    // use html for every other common use case
+    list.map(text => html`<li>${text}</li>`)
+  }</${el}>
+`);
+```
