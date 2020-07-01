@@ -81,3 +81,18 @@ render(document.body, shtml`
   }</${el}>
 `);
 ```
+
+
+
+## Other usages
+
+While dynamic tags as static part of the template might be the most common use case, this utility makes it possible to actually map anything as static part of a template, even partial chunks.
+
+```js
+import {asStatic, asParams} from 'static-params';
+
+asParams`!${asStatic('<what')}ever ${'wut'}${asStatic('blah')}!`;
+// [ [ '!<whatever ', 'blah!' ], 'wut' ]
+```
+
+In few words, there are no limitations regarding which part of the template should be made static, and which part is dynamic, so it is possible to create also invalid templates, but this is just what this library offers.
