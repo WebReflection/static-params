@@ -17,10 +17,8 @@ const parse = (template, values) => {
 const asStatic = value => new Static(value);
 
 const asParams = (template, ...values) => {
-  let parsed = cache.get(template);
-  if (!parsed)
-    cache.set(template, parsed = {});
   const {t, v} = parse(template, values);
+  const parsed = cache.get(template) || cache.set(template, {}).get(template);
   return (parsed[t] || (parsed[t] = [t])).concat(v.map(i => values[i]));
 };
 

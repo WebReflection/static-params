@@ -29,13 +29,11 @@ self.staticParams = (function (exports) {
       values[_key - 1] = arguments[_key];
     }
 
-    var parsed = cache.get(template);
-    if (!parsed) cache.set(template, parsed = {});
-
     var _parse = parse(template, values),
         t = _parse.t,
         v = _parse.v;
 
+    var parsed = cache.get(template) || cache.set(template, {}).get(template);
     return (parsed[t] || (parsed[t] = [t])).concat(v.map(function (i) {
       return values[i];
     }));
