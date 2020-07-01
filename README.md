@@ -10,6 +10,8 @@ The most common use case for this utility is to solve the repeated question:
 
 Yes, with this utility, all these libraries can finally do that, as those dynamic tags will be converted into static content.
 
+**[Live Demo](https://codepen.io/WebReflection/pen/MWKOQbp?editors=0010)**
+
 ```js
 import {asStatic, asParams, asTag} from 'static-params';
 // const {asStatic, asParams, asTag} = require('static-params');
