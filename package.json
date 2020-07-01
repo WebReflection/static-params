@@ -1,6 +1,6 @@
 {
   "name": "static-params",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A general purpose utility to allow interpolation values as static parts of a template literal tag",
   "main": "./cjs/index.js",
   "scripts": {
