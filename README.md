@@ -83,6 +83,12 @@ render(document.body, shtml`
 ```
 
 
+## Strict export usages
+
+If none of the static parts of a template are ever going to change, the `static-params/strict` export is identical in behavior, but it's much faster thanks to its 1:1 relation with the template, so that dynamic values are mapped once and never gain per same template content.
+
+That is: default behavior loops over template and interpolation every single time, the `strict` variant does that only once.
+
 
 ## Other usages
 

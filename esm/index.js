@@ -1,5 +1,15 @@
 const cache = new WeakMap;
 
+const asTag = fn => function() {
+  return fn.apply(this, asParams.apply(null, arguments));
+};
+
+const asParams = (template, ...values) => {
+  const {t, v} = parse(template, values);
+  const parsed = cache.get(template) || cache.set(template, {}).get(template);
+  return (parsed[t] || (parsed[t] = [t])).concat(v.map(i => values[i]));
+};
+
 const parse = (template, values) => {
   const t = [template[0]];
   const v = [];
@@ -15,16 +25,6 @@ const parse = (template, values) => {
 };
 
 const asStatic = value => new Static(value);
-
-const asParams = (template, ...values) => {
-  const {t, v} = parse(template, values);
-  const parsed = cache.get(template) || cache.set(template, {}).get(template);
-  return (parsed[t] || (parsed[t] = [t])).concat(v.map(i => values[i]));
-};
-
-const asTag = fn => function() {
-  return fn.apply(this, asParams.apply(null, arguments));
-};
 
 export {asStatic, asParams, asTag};
 
