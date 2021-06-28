@@ -15,8 +15,8 @@ function parse(template) {
   const t = [template[0]];
   const v = [];
   for (let c = 0, j = 0, i = 1, {length} = arguments; i < length; i++) {
-    if (arguments[i] instanceof Static)
-      t[c] += arguments[i].v + template[i];
+    if (arguments[i] instanceof String)
+      t[c] += arguments[i] + template[i];
     else {
       v[j++] = i;
       t[++c] = template[i];
@@ -25,10 +25,8 @@ function parse(template) {
   return {t, v};
 }
 
-const asStatic = value => new Static(value);
+const asStatic = value => new String(value);
 
 exports.asStatic = asStatic;
 exports.asParams = asParams;
 exports.asTag = asTag;
-
-function Static(v) { this.v = v; }
