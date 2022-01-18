@@ -18,3 +18,5 @@ console.assert(content().v.join('-') === 'content', 'correct content');
 const diff = tagName => html`<${tagName}>${'content'}</${tagName}>`;
 console.assert(diff(asStatic('a')).t === diff(asStatic('a')).t, 'same template');
 console.assert(diff(asStatic('a')).t === diff(asStatic('b')).t, 'different template not happening');
+
+require('./sql.js');
