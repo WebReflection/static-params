@@ -15,3 +15,8 @@ console.assert(JSON.stringify(values) === '[4,"test"]');
 [template, values] = tag`SELECT * FROM ${asStatic('table')} WHERE id IN (${[5,6]}) OR name IN (${['A', 'B']})`;
 console.assert(template.join('?') === 'SELECT * FROM table WHERE id IN (?,?) OR name IN (?,?)');
 console.assert(JSON.stringify(values) === '[5,6,"A","B"]');
+
+// SQLite allows empty sets in WHERE ... IN statements
+[template, values] = tag`SELECT * FROM ${asStatic('table')} WHERE name IN (${[]})`;
+console.assert(template.join('?') === 'SELECT * FROM table WHERE name IN (?)');
+console.assert(JSON.stringify(values) === '[""]');

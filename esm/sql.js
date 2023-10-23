@@ -11,7 +11,7 @@ const asParams = (template, ...values) => {
     else {
       if (isArray(values[i])) {
         t.push(...values[i].slice(1).map(_ => ','));
-        v.push(...values[i]);
+        v.push(...(values[i].length ? values[i] : ['']))
       }
       else
         v.push(values[i]);
